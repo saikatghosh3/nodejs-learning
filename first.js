@@ -7,12 +7,41 @@
 
 // The above one is old version of create server
 
-const http = require("http");
- const server = http.createServer((req, res)=> {
+
+
+
+// new version of function 
+
+
+// const http = require("http");
+//  const server = http.createServer((req, res)=> {
     // anonymous function 
-    console.log(req)
+    // console.log(req);
+    // process.exit(); // stop the event loop
+    // 1st response korbe then exit korbe.
+
+// });
+// const PORT = 3000;
+// server.listen(PORT, ()=>{
+//     console.log(`Server running at http://localhost:${PORT}`)
+// })
+
+
+
+
+
+// Understanding request Object 
+
+const http = require("http");
+const server = http.createServer((req,res)=>{
+    console.log(req.url, req.method, req.headers)
 });
+
 const PORT = 3000;
-server.listen(PORT, ()=>{
-    console.log(`Server running at http:// localhost:${PORT}`)
+server.listen(PORT, ()=> {
+     console.log(`Server running at http://localhost:${PORT}`)
 })
+
+
+
+// next one how to send response. (cosider like a shopping bag. )
