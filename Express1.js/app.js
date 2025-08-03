@@ -1,6 +1,9 @@
 // Import the express module
 const express = require('express');
 
+// local module
+const userRouter = require("./routes/userRouter");
+
 // Create an Express app
 const app = express();
 
@@ -10,14 +13,12 @@ app.use((req, res, next) => {
     next(); // Pass control to the next middleware or route
 });
 
-// Route: Home page
-app.get('/', (req, res) => {
-    res.send('<h1>Welcome to Airbnb</h1>');
-});
-app.get("/add-home", (req,res, next)=>{
+app.use(userRouter);
+
+app.get("/host/add-home", (req,res, next)=>{
     res.send(
         `<h1> Register your home here: </h1>
-        <form action = "/add-home" method = "POST">
+        <form action = "/host/add-home" method = "POST">
            <input type = "text" name= "houseName"
            placeholder = "Enter the name of your house/"
 
@@ -29,7 +30,7 @@ app.get("/add-home", (req,res, next)=>{
     )
 })
 
-app.post ("/add-home", (req, res, next)=>{
+app.post ("/host/add-home", (req, res, next)=>{
     res.send(
         `<h1> Home registered successfully </h1>
         <a href = "/">Go to home</a>
@@ -39,7 +40,7 @@ app.post ("/add-home", (req, res, next)=>{
 
 
 // Route: About page (optional for demo)
-app.get('/about', (req, res) => {
+app.get('/host/about', (req, res) => {
     res.send('<h1>About Airbnb</h1>');
 });
 
